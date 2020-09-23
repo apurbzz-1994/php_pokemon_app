@@ -27,7 +27,27 @@
                         ?>
                             <h5><?= $pokemon['name']   ?></h5>
                             <?php $poke_name = strtolower($pokemon['name']); 
-                            echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/$poke_name.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">"
+                            //fixing for specific pokemon
+                            $nidoranF = "29";
+                            $nidoranM = "32";
+                            $mrMime = "122";
+                            $farFetched = "83";
+                            
+                            if(strcasecmp($pokemon['poke_id'], $nidoranF) == 0){
+                                echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/nidoran-f.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">";
+                            }
+                            else if(strcasecmp($pokemon['poke_id'], $nidoranM) == 0){
+                                echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/nidoran-m.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">";
+                            }
+                            else if(strcasecmp($pokemon['poke_id'], $mrMime) == 0){
+                                echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/mr-mime.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">";
+                            }
+                            else if(strcasecmp($pokemon['poke_id'], $farFetched) == 0){
+                                echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/farfetchd.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">";
+                            }
+                            else{
+                                echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/$poke_name.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">";
+                            }
                             ?>
                         </div>
                     </div>
