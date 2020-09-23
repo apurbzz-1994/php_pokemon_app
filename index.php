@@ -6,6 +6,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Condensed">
     </head>
     <body>
         <?php  
@@ -20,11 +21,13 @@
             <div class="row">
                 <?php foreach($pokemon_array as $pokemon){ ?>
                     <div class="col-12 col-md-6 col-lg-3 ind-row-margin">
-                        <div class="pokemon-card">
-                            <h4><?= $pokemon['name']   ?></h4>
+                        <?php 
+                        $poke_type = strtolower($pokemon['type_1']);    
+                        echo "<div class=\"pokemon-card $poke_type\" >";   
+                        ?>
+                            <h5><?= $pokemon['name']   ?></h5>
                             <?php $poke_name = strtolower($pokemon['name']); 
                             echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/$poke_name.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">"
-                            
                             ?>
                         </div>
                     </div>
