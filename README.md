@@ -7,4 +7,5 @@ Pokemon dataset downloaded from: [https://gist.github.com/armgilles/194bcff35001
 
 
 #### First Version:
+Shows list of Kanto, Jhoto and Hoenn pokemon with search functionality.
 ![](assets/version_1.png)
