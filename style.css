@@ -1,0 +1,22 @@
+.pokemon-card{
+    text-align: center;
+    color: brown;
+    padding: 1em;
+    background-color: black;
+    border-radius: 15px;
+}
+
+.responsive-poke-img {
+    width: 100%;
+    max-width: 100px;
+    height: auto;
+}
+
+.ind-row-margin{
+    margin-bottom: 1em;
+}
+
+/*div{
+    border: 2px solid magenta;
+   
+}*/
