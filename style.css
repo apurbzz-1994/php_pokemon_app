@@ -22,6 +22,29 @@ body{
     margin-bottom: 1em;
 }
 
+.search-bar{
+    margin-top: 5em;
+    margin-bottom: 5em;
+}
+
+/*
+Good way to make input fields responsive
+*/
+
+input[type=text] {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+    resize: vertical;
+  }
+
+  /*removing blue select border from input field*/
+  textarea:focus, input:focus{
+    outline: none;
+}
+
 /*div{
     border: 2px solid magenta;
    

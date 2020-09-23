@@ -7,6 +7,8 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <link rel="stylesheet" href="style.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Condensed">
+        <script src="script.js"></script>
+
     </head>
     <body>
         <?php  
@@ -18,6 +20,12 @@
             $pokemon_array = $stmt -> fetchAll();
         ?>
         <div class="container">
+            <div class="row search-bar">
+                <div class="col-12 col-md-12 col-lg-12">
+                    <!--The search bar input-->
+                    <input type="text" id="pokesearch" name="pokesearch" placeholder="Search for Pokemon" onkeyup="searchForPokemon()">
+                </div>
+            </div>
             <div class="row">
                 <?php foreach($pokemon_array as $pokemon){ ?>
                     <div class="col-12 col-md-6 col-lg-3 ind-row-margin">
@@ -54,7 +62,5 @@
                 <?php }?>
             </div>
         </div>
-
-
     </body>
 </html>
