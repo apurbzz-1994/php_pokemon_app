@@ -30,9 +30,11 @@
                 <?php foreach($pokemon_array as $pokemon){ ?>
                     <div class="col-12 col-md-6 col-lg-3 ind-row-margin">
                         <?php 
-                        $poke_type = strtolower($pokemon['type_1']);    
-                        echo "<div class=\"pokemon-card $poke_type\" >";   
+                        $poke_type = strtolower($pokemon['type_1']);  
+                        //this is the div for each pokemon card  
+                        //echo "<div class=\"pokemon-card $poke_type\" onclick=\"location.href=\'dashboard.php\';\" style=\"cursor: pointer;\">";   
                         ?>
+                        <div class="pokemon-card <?= $poke_type ?>" onclick="location.href='dashboard.php?id=<?= $pokemon['poke_id'] ?>';" style="cursor: pointer;">
                             <h5><?= $pokemon['name']   ?></h5>
                             <?php $poke_name = strtolower($pokemon['name']); 
                             //fixing for specific pokemon
