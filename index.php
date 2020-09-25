@@ -14,7 +14,7 @@
         <?php  
             include("connection.php");
             //setting the database stuff
-            $query = "select * from `TABLE 3` limit 386";
+            $query = "select * from `pokemon` limit 386";
             $stmt = $dbh -> prepare($query);
             $stmt -> execute(); 
             $pokemon_array = $stmt -> fetchAll();
