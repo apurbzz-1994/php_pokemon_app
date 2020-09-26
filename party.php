@@ -1,7 +1,6 @@
 <html>
     <head>
         <title>Your Party Lists</title>
-        <title>Pokemon Database</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
@@ -17,7 +16,8 @@
             <div class="row">
                 <div class="col-12 col-md-12 col-lg-12 search-bar">
                         <form method="post">
-                            <input type="text" name="list_name" placeholder="Enter a name for your party">
+                            <input type="text" name="list_name" placeholder="Enter a name for your party" class="ind-row-margin">
+                            <input type="text" name="list_des" placeholder="Describe your party" class="ind-row-margin">
                             <div id="list-button-div">
                                 <input type="submit" value="Create Party" id="list-button"/>
                             </div>
@@ -26,10 +26,11 @@
                 <!--script for inserting list in db-->
                 <?php 
                     if(!empty($_POST)){
-                        $query = "INSERT INTO `party_list` (`party_title`) VALUES (:partytitle)";
+                        $query = "INSERT INTO `party_list` (`party_title`, `description`) VALUES (:partytitle, :partydescription)";
                         $stmt = $dbh->prepare($query);
                         $parameters = [
-                            'partytitle' => $_POST['list_name']
+                            'partytitle' => $_POST['list_name'],
+                            'partydescription' => $_POST['list_des']
                         ];
                         if($stmt -> execute($parameters)){
                             echo "
@@ -58,6 +59,9 @@
                             <div class="col-12 col-md-4 col-lg-4">
                                 <!--Name and possible description goes here-->
                                 <h3><?= $party['party_title'] ?></h3>
+                                <div class = "ind-row-margin">
+                                    <p><?= $party['description'] ?></p>
+                                </div>
                             </div>
                             <div class="col-12 col-md-5 col-lg-5 offset-md-2 offset-lg-2">
                                 <!--Pokemon list goes here-->
