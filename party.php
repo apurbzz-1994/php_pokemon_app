@@ -18,8 +18,8 @@
                         <form method="post">
                             <input type="text" name="list_name" placeholder="Enter a name for your party" class="ind-row-margin">
                             <input type="text" name="list_des" placeholder="Describe your party" class="ind-row-margin">
-                            <div id="list-button-div">
-                                <input type="submit" value="Create Party" id="list-button"/>
+                            <div class="list-button-div">
+                                <input type="submit" value="Create Party" class="list-button"/>
                             </div>
                         </form>
                 </div>
@@ -44,6 +44,9 @@
             </div>
             <!--This is the party list view div-->
             <div class="row">
+                <div class="col-12 col-md-12 col-lg-12" style="margin-bottom: 2em;">
+                    <h1>Your Lists</h1>
+                </div>
                 <!--Generating the stored list-->
                 <?php 
                 $listQuery = "SELECT * FROM `party_list`";

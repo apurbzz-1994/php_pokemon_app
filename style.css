@@ -28,11 +28,11 @@ body{
     margin-bottom: 5em;
 }
 
-#list-button-div{
+.list-button-div{
     text-align: center;
 }
 
-#list-button {
+.list-button {
     margin-top: 3em;
     width: 25%;
     padding: 0.5em;
@@ -43,6 +43,16 @@ body{
     cursor:pointer;
     font-weight: bold;
 
+}
+
+.list-selector{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 20px;
+    box-sizing: border-box;
+    resize: vertical;
+    margin-top: 1em;
 }
 
 .party-card{

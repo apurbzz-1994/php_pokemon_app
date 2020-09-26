@@ -26,8 +26,9 @@ py_id => $_POST["party_select"];
 
 <body>
     <?php include("connection.php"); ?>
+    <div class="container">
     <div class="row">
-        <div class="col-12 col-md-12 col-lg-12">
+        <div class="col-12 col-md-12 col-lg-12 search-bar">
             <form method="post">
                 <input type="text" name="nick_name" placeholder="Give your pokemon a nickname">
                 <!--php code for populating selection with party from db-->
@@ -40,7 +41,7 @@ py_id => $_POST["party_select"];
                     $party_list_array = $stmt -> fetchAll();
                 
                 ?>
-                <select name="party_select">
+                <select name="party_select" class="list-selector">
                     <?php foreach($party_list_array as $party){ ?>
 
                         <option value = "<?= $party['py_id'] ?>" ><?= $party['party_title'] ?></option>
@@ -51,7 +52,9 @@ py_id => $_POST["party_select"];
                         <p>No parties created yet</p>
                     </div>
                 <?php } ?>
-                <input type="submit" value="Add to party">
+                <div class="list-button-div">
+                    <input type="submit" value="Add to party" class="list-button">
+                </div>
             </form>
             <!--Code for adding a new party pokemon-->
             <?php
@@ -85,6 +88,8 @@ py_id => $_POST["party_select"];
             ?>
         </div>
     </div>
+    </div>
+
 </body>
 
 </html>
