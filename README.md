@@ -9,3 +9,6 @@ Pokemon dataset downloaded from: [https://gist.github.com/armgilles/194bcff35001
 #### First Version:
 Shows list of Kanto, Jhoto and Hoenn pokemon with search functionality.
 ![](assets/version_1.png)
+
+Allows user to create new lists and also add pokemon for each list
+![](assets/poke_list.png)
