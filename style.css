@@ -1,6 +1,7 @@
 body{
     background: rgb(25,25,25);
     color: white;
+    font-family: 'Roboto', sans-serif;;
 }
 
 .pokemon-card{
@@ -8,9 +9,8 @@ body{
     color: white;
     padding: 1em;
     padding-top: 2em;
-    background-color: black;
     border-radius: 15px;
-    font-family: 'Roboto Condensed', serif;
+    font-family: 'Roboto Condensed', sans-serif;
 }
 
 .responsive-poke-img {
@@ -27,6 +27,31 @@ body{
     margin-top: 5em;
     margin-bottom: 5em;
 }
+
+#list-button-div{
+    text-align: center;
+}
+
+#list-button {
+    margin-top: 3em;
+    width: 25%;
+    padding: 0.5em;
+    border-radius: 20px;
+    background-color: #1E90FF;
+    color: white;
+    border:0 none;
+    cursor:pointer;
+    font-weight: bold;
+
+}
+
+.party-card{
+    background: rgb(47,51,54);
+    background: linear-gradient(0deg, rgba(47,51,54,1) 0%, rgba(15,16,17,1) 100%);
+    margin-bottom: 1em;
+    padding: 1em;
+}
+
 
 /*
 Good way to make input fields responsive

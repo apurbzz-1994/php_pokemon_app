@@ -10,47 +10,67 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto Condensed">
     </head>
     <body>
+        <?php include("connection.php"); ?>
         <div class="container">
+            <!--This is the create party div-->
             <div class="row">
-                <div class="col-12 col-md-12 col-lg-12">
+                <div class="col-12 col-md-12 col-lg-12 search-bar">
                         <form method="post">
                             <input type="text" name="list_name" placeholder="Enter a name for your party">
-                            <input type="submit" value="Create Party"/>
+                            <div id="list-button-div">
+                                <input type="submit" value="Create Party" id="list-button"/>
+                            </div>
                         </form>
                 </div>
-                    <?php
-                    include("connection.php");
-                    //checks if the user has pressed the create party button or not 
-                    if(!empty($_POST["list_name"])){
-                        //create the query
-                        $query = "INSERT INTO `party_list`(`party_title`) VALUES (:partytitle)";
+                <!--script for inserting list in db-->
+                <?php 
+                    if(!empty($_POST)){
+                        $query = "INSERT INTO `party_list` (`party_title`) VALUES (:partytitle)";
                         $stmt = $dbh->prepare($query);
                         $parameters = [
                             'partytitle' => $_POST['list_name']
                         ];
-                        //execute the fucking query
                         if($stmt -> execute($parameters)){
                             echo "
-                            <div class=\"col-12 col-md-12 col-lg-12\">
-                                <p>List was created successfully</p>
-                            </div>";
-                        };
-                    }?>
-                    <!--Generating the stored lists-->
-                    <?php 
-                    $listQuery = "SELECT * FROM `party_list`";
-                    $listStmt = $dbh -> prepare($listQuery);
-                    $listStmt -> execute();
-                    if($listStmt-> rowCount() > 0){
-                        $party_array = $listStmt -> fetchAll();
-                    ?>
+                                <script>
+                                    window.alert(\"List was created successfully.\");
+                                </script>
+                            ";
+                        }
+                    }
+                ?>
+            </div>
+            <!--This is the party list view div-->
+            <div class="row">
+                <!--Generating the stored list-->
+                <?php 
+                $listQuery = "SELECT * FROM `party_list`";
+                $listStmt = $dbh->prepare($listQuery);
+                //execute the shit
+                $listStmt -> execute();
+                if($listStmt->rowCount() > 0){
+                    $party_array = $listStmt -> fetchAll();?>
+                <!--Populating-->
+                <?php foreach($party_array as $party){ ?>
+                    <div class="col-12 col-md-12 col-lg-12">
+                        <div class = "row party-card">
+                            <div class="col-12 col-md-4 col-lg-4">
+                                <!--Name and possible description goes here-->
+                                <h3><?= $party['party_title'] ?></h3>
+                            </div>
+                            <div class="col-12 col-md-8 col-lg-8">
+                                <!--Pokemon list goes here-->
+                                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?</p>
+                            </div>
+                        </div>
+                    </div>
 
-                    <?php foreach($party_array as $party){ ?>
-                        <h2><?= $party['party_title'] ?></h2>
-                    <?php } //end of forach loop ?>
-                    <?php } else {
-                        echo "<p>No party lists have been created yet</p>";
-                    }?>
+                <?php } //end of foreach ?>
+
+                <?php } else{
+                    
+                }?>
+                
             </div>
         </div>
     </body>
