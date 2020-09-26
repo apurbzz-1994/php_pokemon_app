@@ -59,20 +59,47 @@
                                 <!--Name and possible description goes here-->
                                 <h3><?= $party['party_title'] ?></h3>
                             </div>
-                            <div class="col-12 col-md-8 col-lg-8">
+                            <div class="col-12 col-md-5 col-lg-5 offset-md-2 offset-lg-2">
                                 <!--Pokemon list goes here-->
                                 <?php 
-                                    $memberQuery = "SELECT pokemon.name AS name, pokemon.type_1 AS type, party_member.member_nickname AS nickname 
+                                    $memberQuery = "SELECT pokemon.name AS name, pokemon.type_1 AS type, party_member.member_nickname AS nickname,
+                                    pokemon.poke_id AS poke_id 
                                     FROM pokemon JOIN party_member on (pokemon.id=party_member.pok_id AND py_id=?);";
                                     $memberStmt = $dbh -> prepare($memberQuery);
                                     $memberStmt -> execute([$party['py_id']]);
                                     if($memberStmt -> rowCount() > 0){ 
                                         $all_pokemon = $memberStmt -> fetchAll();?>
                                     <?php foreach($all_pokemon as $pokemon){ ?>
-                                        <div>
-                                            <h4><?= $pokemon['name'] ?></h4>
-                                            <p><?= $pokemon['nickname'] ?></p>
-                                            <p><?= $pokemon['type'] ?></p>
+                                        <div class="row poke-list-view <?= $pokemon['type'] ?>">
+                                            <div class="col-4 col-md-4 col-lg-4">
+                                            <?php $poke_name = strtolower($pokemon['name']); 
+                                                //fixing for specific pokemon
+                                                $nidoranF = "29";
+                                                $nidoranM = "32";
+                                                $mrMime = "122";
+                                                $farFetched = "83";
+                                                
+                                                if(strcasecmp($pokemon['poke_id'], $nidoranF) == 0){
+                                                    echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/nidoran-f.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">";
+                                                }
+                                                else if(strcasecmp($pokemon['poke_id'], $nidoranM) == 0){
+                                                    echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/nidoran-m.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">";
+                                                }
+                                                else if(strcasecmp($pokemon['poke_id'], $mrMime) == 0){
+                                                    echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/mr-mime.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">";
+                                                }
+                                                else if(strcasecmp($pokemon['poke_id'], $farFetched) == 0){
+                                                    echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/farfetchd.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">";
+                                                }
+                                                else{
+                                                    echo "<img src=\"https://img.pokemondb.net/sprites/ruby-sapphire/normal/$poke_name.png\" alt=\"$poke_name\" class=\"responsive-poke-img\">";
+                                                }
+                                                ?>
+                                            </div>
+                                            <div class="col-4 col-md-4 col-lg-4" style="padding: 0.5em;">
+                                                <h4><?= $pokemon['name'] ?></h4>
+                                                <p><?= $pokemon['nickname'] ?></p>
+                                            </div> 
                                         </div>
 
                                     <?php } ?>

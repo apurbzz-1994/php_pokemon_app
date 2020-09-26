@@ -52,6 +52,12 @@ body{
     padding: 1em;
 }
 
+.poke-list-view{
+    background-color: tomato;
+    margin-top: 0.5em;
+    border-radius: 20px;
+}
+
 
 /*
 Good way to make input fields responsive
