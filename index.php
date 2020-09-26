@@ -34,7 +34,7 @@
                         //this is the div for each pokemon card  
                         //echo "<div class=\"pokemon-card $poke_type\" onclick=\"location.href=\'dashboard.php\';\" style=\"cursor: pointer;\">";   
                         ?>
-                        <div class="pokemon-card <?= $poke_type ?>" onclick="location.href='dashboard.php?id=<?= $pokemon['poke_id'] ?>';" style="cursor: pointer;">
+                        <div class="pokemon-card <?= $poke_type ?>" onclick="location.href='dashboard.php?id=<?= $pokemon['id'] ?>';" style="cursor: pointer;">
                             <h5><?= $pokemon['name']   ?></h5>
                             <?php $poke_name = strtolower($pokemon['name']); 
                             //fixing for specific pokemon

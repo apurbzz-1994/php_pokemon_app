@@ -18,6 +18,12 @@
     <title>Add to list</title>
 </head>
 
+<!--
+Important shit to remember:
+pok_id => $_GET["id"];
+py_id => $_POST["party_select"];
+-->
+
 <body>
     <?php include("connection.php"); ?>
     <div class="row">
@@ -36,7 +42,8 @@
                 ?>
                 <select name="party_select">
                     <?php foreach($party_list_array as $party){ ?>
-                        <option><?= $party['party_title'] ?></option>
+
+                        <option value = "<?= $party['py_id'] ?>" ><?= $party['party_title'] ?></option>
                     <?php } ?>
                 </select>
                 <?php } else{ ?>
@@ -44,9 +51,38 @@
                         <p>No parties created yet</p>
                     </div>
                 <?php } ?>
-
                 <input type="submit" value="Add to party">
             </form>
+            <!--Code for adding a new party pokemon-->
+            <?php
+            if(!empty($_POST)){
+                $memberQuery = "INSERT INTO `party_member` (`py_id`, `pok_id`, `member_nickname`) VALUES (:pyid, :pokid, :membernickname)";
+                $memberStmt = $dbh -> prepare($memberQuery);
+                $parameters = [
+                    'pyid' => (int)  $_POST["party_select"],
+                    'pokid' => (int) $_GET["id"],
+                    'membernickname' => $_POST["nick_name"]
+                ];
+                echo $_POST["party_select"];
+                echo $_GET["id"];
+                echo $_POST["nick_name"];
+                if($memberStmt -> execute($parameters)){
+                    echo "
+                        <script>
+                        window.alert(\"Pokemon successfully added to chosen list.\");
+                        </script>
+                    ";
+                }
+                else{
+                    $errorMessage = $memberStmt -> errorInfo()[2];
+                    echo "
+                        <script>
+                        window.alert(\"Error: $errorMessage \");
+                        </script>
+                ";
+                }
+            }
+            ?>
         </div>
     </div>
 </body>
